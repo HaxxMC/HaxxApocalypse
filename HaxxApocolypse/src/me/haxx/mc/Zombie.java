@@ -1,7 +1,7 @@
 package me.haxx.mc;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -10,14 +10,13 @@ public class Zombie implements Listener{
 
 	@EventHandler
 	public void onHit(EntityDamageByEntityEvent e){
-		Entity a = e.getDamager();
-		Location l = a.getLocation();
+		Location l = e.getDamager().getLocation();
 		
 		double dmg = e.getDamage();
 		int x = l.getBlockX();
 		int z = l.getBlockZ();
 		
-		if(a instanceof org.bukkit.entity.Zombie){
+		if(e.getEntity() instanceof Player && e.getDamager() instanceof Zombie){
 			if(x>999 && x<2000 || z>999 && z<2000){
 				e.setDamage(dmg + 1);
 			}
