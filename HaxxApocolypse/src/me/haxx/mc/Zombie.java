@@ -61,7 +61,7 @@ public class Zombie implements Listener{
 		double x = sl.getX();
 		double z = sl.getZ();
 		
-		if(e.getEntityType().equals(EntityType.ZOMBIE) && x>6999 || z<6999) {
+		if(x>6999 || z<6999 && e.getEntityType().equals(EntityType.ZOMBIE)) {
 				e.setCancelled(true);
 		}
 	}
