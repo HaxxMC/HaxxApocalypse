@@ -1,12 +1,11 @@
 package me.haxx.mc;
 
-import java.util.Random;
-
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -49,17 +48,21 @@ public class Zombie implements Listener{
 	//Giving zombies Speed 1 past 3k, and Fire Resistance past 7k 25% of the time.
 	@EventHandler
 	public void onSpawn(CreatureSpawnEvent e){
-		Location sl = e.getLocation();
+		/*Location sl = e.getLocation();
 		
-		Random r = new Random();
 		double x = sl.getX();
 		double z = sl.getZ();
+		*/
 		
-		if(e.getEntityType().equals(EntityType.ZOMBIE) && x>2999 || z>2999){
-			e.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+		if(e.getEntityType().equals(EntityType.ZOMBIE)){
+			e.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, -1, 1));
 		}
-		if(e.getEntityType().equals(EntityType.ZOMBIE) && r.nextInt(100) <=25 && x>6999 || z>6999){
-			e.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 1));
+	}
+	
+	@EventHandler
+	public void onCombust(EntityCombustEvent e) {
+		if(e.getEntityType().equals(EntityType.ZOMBIE)) {
+				e.setCancelled(true);
 		}
 	}
 }
