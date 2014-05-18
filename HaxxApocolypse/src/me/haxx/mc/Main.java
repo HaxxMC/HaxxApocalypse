@@ -23,8 +23,7 @@ public class Main extends JavaPlugin {
 
 	public void onEnable(){
 		getServer().getWorld("world").setTicksPerMonsterSpawns(200);
-		registerEvents(this, new Chat());
-		registerEvents(this, new Zombie());
+		registerEvents(this, new Chat(), new Zombie());
 	}
 
 	public void onDisable(){}

@@ -1,7 +1,7 @@
 package me.haxx.mc;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -16,7 +16,7 @@ public class Zombie implements Listener{
 		int x = l.getBlockX();
 		int z = l.getBlockZ();
 		
-		if(e.getEntity() instanceof Player && e.getDamager() instanceof Zombie){
+		if(e.getEntity().getType().equals(EntityType.PLAYER) && e.getDamager().getType().equals(EntityType.ZOMBIE)){
 			if(x>999 && x<2000 || z>999 && z<2000){
 				e.setDamage(dmg + 1);
 			}
@@ -35,6 +35,7 @@ public class Zombie implements Listener{
 			if(x>5999 || z>5999){
 				e.setDamage(dmg + 6);
 			}
+			
 			else{}
 		}
 	}
