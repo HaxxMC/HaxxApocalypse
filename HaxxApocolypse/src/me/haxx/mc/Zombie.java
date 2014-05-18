@@ -45,23 +45,23 @@ public class Zombie implements Listener{
 		}
 	}
 
-	//Giving zombies Speed 1 past 3k, and Fire Resistance past 7k 25% of the time.
+	//Giving zombies Speed 1 past 3k
 	@EventHandler
 	public void onSpawn(CreatureSpawnEvent e){
-		/*Location sl = e.getLocation();
-		
-		double x = sl.getX();
-		double z = sl.getZ();
-		*/
-		
 		if(e.getEntityType().equals(EntityType.ZOMBIE)){
 			e.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, -1, 1));
 		}
 	}
 	
+	//Zombies won't burn to death past 7k
 	@EventHandler
 	public void onCombust(EntityCombustEvent e) {
-		if(e.getEntityType().equals(EntityType.ZOMBIE)) {
+		Location sl = e.getEntity().getLocation();
+		
+		double x = sl.getX();
+		double z = sl.getZ();
+		
+		if(e.getEntityType().equals(EntityType.ZOMBIE) && x>6999 || z<6999) {
 				e.setCancelled(true);
 		}
 	}
