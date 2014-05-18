@@ -4,6 +4,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+//Testing
+
 public class Chat implements Listener {
 	@EventHandler
 	public void formatChat(AsyncPlayerChatEvent event) {
